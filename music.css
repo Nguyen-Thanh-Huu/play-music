@@ -1,0 +1,71 @@
+.app {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.container {
+    width: 26rem;
+    height: 37rem;
+    border: 1px solid #e0b160;
+    background: #e0b160;
+    border-radius: 1.2rem;
+    
+ }
+
+.header {
+    
+ }
+
+.image {
+
+
+}
+.title-music {
+    
+ }
+
+.main {
+    
+ }
+
+.progress {
+    
+ }
+
+ 
+ .time-start {
+
+ }
+     
+ .time-end {
+ 
+ }
+
+.footer {
+    
+ }
+    
+.repeat- {
+
+}
+    
+.pre-music {
+
+}
+
+
+.play {
+    
+}
+
+    
+.next-music {
+
+}
+    
+.repeat-current_music {
+
+}
+    
