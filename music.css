@@ -40,7 +40,7 @@
 .title-music {
     margin-top: 3rem;
     font-size: 1.7rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
    text-align: center;
    margin-bottom: 3rem;
  }
@@ -53,6 +53,11 @@
 .progress {
 text-align: center;
  }
+
+#range {
+    width: 92%;
+    height: 0.5rem;
+}
 
 #song {
     width: 23rem;
