@@ -6,10 +6,14 @@ const btnRepeatCurrent = document.querySelector(".repeat-current_music");
 const durationTime = document.querySelector(".time-start");
 const remainingTime = document.querySelector(".time-end");
 const range = document.querySelector("#range");
+const sound = document.querySelector(".sound");
+const rangeSound = document.querySelector("#sound")
+
 
 
 const single = document.querySelector(".single");
 const titleMusic = document.querySelector(".title-music");
+let changeSound = 1;
 
 displayTimer();
 let timer = setInterval(displayTimer, 500);
@@ -124,4 +128,25 @@ function formatTimer(number) {
 range.addEventListener('change', handleChangeBar);
 function handleChangeBar() {
   song.currentTime = range.value;
+}
+
+// handle sound
+sound.addEventListener('click', handleSound);
+function handleSound() {        
+  if(changeSound === 1) {
+    sound.innerHTML = `<i id="mute" class="fas fa-volume-mute"></i>`; 
+    song.volume = 0;
+    changeSound = 2;
+  }  else  if(changeSound === 2) {
+    sound.innerHTML = `<i id="volume" class="fas fa-volume-up"></i>`;
+    song.volume = 1;
+    changeSound = 1;
+  }     
+}
+
+// change value input icon sound 
+
+rangeSound.addEventListener('change', handleChangeSound);
+function handleChangeSound() {
+  song.volume = rangeSound.value;
 }
