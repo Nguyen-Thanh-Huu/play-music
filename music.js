@@ -8,7 +8,9 @@ const remainingTime = document.querySelector(".time-end");
 const range = document.querySelector("#range");
 const sound = document.querySelector(".sound");
 const rangeSound = document.querySelector("#sound")
-
+const repeatAllSong = document.querySelector(".repeat-infi");
+const repeatCurrentSong = document.querySelector(".repeat-current_song");
+const image = document.querySelector(".image-music");
 
 
 const single = document.querySelector(".single");
@@ -26,40 +28,49 @@ let musics = [
     title:"Day dứt nỗi đau",
     single: "Mr.Siro",
     author: "Mr.Siro",
+    images: "./image/siro.jpg"
   },
   {
     name: "Áng mây vô tình.mp3",
     title:"Áng mây vô tình",
     single: "Lương Gia Hùng",
     author: "Nguyễn Công Thắng",
+    images: "./image/may.jpg"
+
   },
   {
     name: "Nếu lúc trước em đừng tới.mp3",
     title:"Nếu lúc trước em đừng tới",
     single: "Quang Vinh",
     author: "Nhạc ngoại",
+    images: "./image/quangvinh.jpg"
+
   },
 ];
 
 song.setAttribute("src", `./music/${musics[indexSong].name}`);
 single.innerHTML = musics[indexSong].single;
 titleMusic.innerHTML = musics[indexSong].title;
+image.setAttribute("src", `./${musics[indexSong].images}`);
 
 
 // handle when clicked icon play -> pause and reverse.
 play.addEventListener("click", changeIconPause);
 function changeIconPause() {
   if (isPlay) {
+    image.style.animationPlayState = 'running'
     song.play();
     isPlay = false;
     play.innerHTML = `<i id="icon-pause" class="fa-solid fa-pause"></i>`;
    timer = setInterval(displayTimer, 500);
+   image.classList.add('image-rotate');
 
   } else {
     song.pause();
     isPlay = true;
     play.innerHTML = `<i id="icon-play" class="fa-solid fa-play"></i>`
     clearInterval(timer)
+    image.style.animationPlayState = 'paused'
   }
 }
 
@@ -69,22 +80,30 @@ function changeSong(change) {
     indexSong++;
     if (indexSong >= musics.length) {
       indexSong = 0;
+      image.classList.remove('image-rotate')
+      image.classList.add('image-rotate')
+
     }
     isPlay = true;
   } else if (change === -1) {
     // back song
     indexSong--;
     if(indexSong < 0) {
-        indexSong = musics.length - 1;
+      indexSong = musics.length - 1;
+      image.classList.add('image-rotate')
+
     }
     isPlay = true;
   }
 
   song.setAttribute("src", `./music/${musics[indexSong].name}`);
   single.innerHTML = musics[indexSong].single;
-titleMusic.innerHTML = musics[indexSong].title;
+  titleMusic.innerHTML = musics[indexSong].title;
+  image.setAttribute("src", `./${musics[indexSong].images}`);
 
   changeIconPause();
+  // image.classList.remove('image-rotate')
+
 }
 
 song.addEventListener('ended', handleFinishSong);
@@ -149,4 +168,27 @@ function handleSound() {
 rangeSound.addEventListener('change', handleChangeSound);
 function handleChangeSound() {
   song.volume = rangeSound.value;
+  if(song.value === 0 ){
+    image.classList.add('image-rotate')
+  }
+}
+
+// feature repeat all song 
+repeatAllSong.addEventListener('click', handleRepeatAllSong);
+function handleRepeatAllSong() {
+  if(indexSong >= musics.length){
+    indexSong = 0;
+  }
+}
+
+// feature repeat current song 
+repeatCurrentSong.addEventListener('click', handleRepeatCurrentSong);
+function handleRepeatCurrentSong() {
+  song.setAttribute("src", `./music/${musics[indexSong].name}`);
+  single.innerHTML = musics[indexSong].single;
+  titleMusic.innerHTML = musics[indexSong].title;
+  image.setAttribute("src", `./${musics[indexSong].images}`);
+  song.play();
+  play.innerHTML = `<i id="icon-pause" class="fa-solid fa-pause"></i>`;
+  timer = setInterval(displayTimer, 500);
 }

@@ -21,7 +21,20 @@
 .image {
   display: flex;
   justify-content: center;
+  
+}
+.image-rotate {
+    transform-origin: center ;
+    animation: spinner 40s linear infinite;
+}
 
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    } 
 }
 
 .image-music {
